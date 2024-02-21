@@ -11,5 +11,8 @@
     "url": "(https://github.com/Deepaksadhwani/Namaste-React.git)"
   },
   "author": "Deepak Sadhwani",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.11.0"
+  }
 }
