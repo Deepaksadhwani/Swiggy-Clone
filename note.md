@@ -38,3 +38,9 @@ const HeadingComponent = () => (
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(<HeadingComponent/>);
+
+
+# 2 types of routing in web apps
+
+- Client Side Routing 
+- Server Side Routing 
