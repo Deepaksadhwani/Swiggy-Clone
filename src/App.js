@@ -12,7 +12,7 @@ const About = lazy(() => import("./components/About"));
 Contact;
 const Applayout = () => {
   return (
-    <div className="app">
+    <div className="">
       <Header />
       <Outlet />
     </div>
