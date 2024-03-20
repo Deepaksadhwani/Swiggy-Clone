@@ -2,38 +2,20 @@ import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
+import useBodyCards from "../utils/useBodyCards";
 const Body = () => {
-  const [resList, setResList] = useState([]);
-  const [filterRes, setFilterRes] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const { resList, filterRes, setFilterRes } = useBodyCards();
+  const onlineStatus = useOnlineStatus();
 
-  useEffect(() => {
-    fetchRestaurant();
-  }, []);
-
-  const fetchRestaurant = async () => {
-    try {
-      const data = await fetch(
-        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.0759837&lng=72.8776559&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-      );
-
-      const json = await data.json();
-
-      setResList(
-        json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-          ?.restaurants
-      );
-      setFilterRes(
-        json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-          ?.restaurants
-      );
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  if (onlineStatus === false)
+    return (
+      <h1>Looks like you're offline!! Please check your internet connection</h1>
+    );
 
   // Conditional Rendering - rendering bases on condition is called conditional rendering
-  return resList.length === 0 ? (
+  return !resList || resList.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">

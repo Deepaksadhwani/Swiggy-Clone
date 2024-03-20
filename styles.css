@@ -74,3 +74,9 @@
   text-decoration: none;
   color: inherit;
 }
+
+.user-card {
+  padding: 10px;
+  border: solid black 2px;
+}
+
