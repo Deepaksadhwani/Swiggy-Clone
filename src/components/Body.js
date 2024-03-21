@@ -18,12 +18,12 @@ const Body = () => {
   return !resList || resList.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
-      <div className="filter">
-        <div className="search">
+    <div className="">
+      <div className="flex flex-col sm:flex-row space-x-3 items-center bg-gradient-to-b to-red-300 from-red-100 border-upper border-black  justify-center  ">
+        <div className="">
           <input
             type="text"
-            className="search-box"
+            className="border-2 shadow-md shadow-gray-500  border-black"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
@@ -31,6 +31,7 @@ const Body = () => {
           />
 
           <button
+            className="border-2 p-1 bg-green-600 m-1  hover:bg-red-400 transition-all duration-200 text-white font-semibold rounded-md"
             onClick={() => {
               console.log(searchText);
               const filteredRes = resList.filter((res) =>
@@ -44,7 +45,7 @@ const Body = () => {
           </button>
         </div>
         <button
-          className="filter-btn"
+          className="border-2 p-1 bg-green-600 m-1  hover:bg-red-400 transition-all duration-200 text-white font-semibold rounded-md"
           onClick={() => {
             filterList = resList.filter((res) => res.info.avgRating > 4);
             console.log("fiter rating", filterList);
@@ -55,7 +56,7 @@ const Body = () => {
         </button>
       </div>
 
-      <div className="res-container">
+      <div className="flex flex-wrap justify-center items-center bg-red-300">
         {filterRes.map((restaurant) =>
           restaurant.info ? (
             <Link
