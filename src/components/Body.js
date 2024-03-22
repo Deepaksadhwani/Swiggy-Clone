@@ -1,5 +1,5 @@
-import RestaurantCard from "./RestaurantCard";
-import { useState, useEffect } from "react";
+import RestaurantCard, { withIsOpenLabel } from "./RestaurantCard";
+import { useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -8,6 +8,8 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const { resList, filterRes, setFilterRes } = useBodyCards();
   const onlineStatus = useOnlineStatus();
+
+  const RestaurantCardOpened = withIsOpenLabel(RestaurantCard);
 
   if (onlineStatus === false)
     return (
@@ -19,7 +21,7 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="">
-      <div className="flex flex-col sm:flex-row space-x-3 items-center bg-gradient-to-b to-red-300 from-red-100 border-upper border-black  justify-center  ">
+      <div className="flex flex-col sm:flex-row space-x-3 items-center bg-yellow-500 border-upper border-black  justify-center  ">
         <div className="">
           <input
             type="text"
@@ -31,13 +33,13 @@ const Body = () => {
           />
 
           <button
-            className="border-2 p-1 bg-green-600 m-1  hover:bg-red-400 transition-all duration-200 text-white font-semibold rounded-md"
+            className="border-2 p-1 bg-green-700 m-1  hover:bg-red-500 transition-all duration-200 text-white font-semibold rounded-md"
             onClick={() => {
-              console.log(searchText);
+              // console.log(searchText);
               const filteredRes = resList.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
-              console.log("filter search", filteredRes);
+              // console.log("filter search", filteredRes);
               setFilterRes(filteredRes);
             }}
           >
@@ -45,10 +47,10 @@ const Body = () => {
           </button>
         </div>
         <button
-          className="border-2 p-1 bg-green-600 m-1  hover:bg-red-400 transition-all duration-200 text-white font-semibold rounded-md"
+          className="border-2 p-1 bg-green-700 m-1  hover:bg-red-500 transition-all duration-200 text-white font-semibold rounded-md"
           onClick={() => {
             filterList = resList.filter((res) => res.info.avgRating > 4);
-            console.log("fiter rating", filterList);
+            // console.log("fiter rating", filterList);
             setFilterRes(filterList);
           }}
         >
@@ -56,7 +58,7 @@ const Body = () => {
         </button>
       </div>
 
-      <div className="flex flex-wrap justify-center items-center bg-red-300">
+      <div className="flex flex-wrap justify-center items-center bg-yellow-500">
         {filterRes.map((restaurant) =>
           restaurant.info ? (
             <Link
@@ -64,7 +66,11 @@ const Body = () => {
               to={"/restaurants/" + restaurant.info.id}
               key={restaurant.info.id}
             >
-              <RestaurantCard resData={restaurant} />
+              {restaurant.info.isOpen ? (
+                <RestaurantCard resData={restaurant} />
+              ) : (
+                <RestaurantCardOpened resData={restaurant} />
+              )}
             </Link>
           ) : null
         )}

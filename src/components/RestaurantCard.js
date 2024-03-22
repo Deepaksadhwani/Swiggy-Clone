@@ -15,4 +15,19 @@ const RestaurantCard = (props) => {
   );
 };
 
+//higher order component
+
+// input -resturantCard => useBodyCards isOpened
+export const withIsOpenLabel = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label className="absolute bg-red-600 p-1  text-white font-semibold  rounded-md">
+          Closed
+        </label>
+        <RestaurantCard {...props}></RestaurantCard>
+      </div>
+    );
+  };
+};
 export default RestaurantCard;

@@ -14,7 +14,9 @@ const useBodyCards = () => {
       );
 
       const json = await data.json();
-
+      console.log(
+        json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+      );
       setResList(
         json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants
@@ -27,6 +29,7 @@ const useBodyCards = () => {
       console.log(err);
     }
   };
+
   return { resList, filterRes, setFilterRes };
 };
 
