@@ -1,7 +1,10 @@
+import { useState } from "react";
 import ItemList from "./ItemList";
 const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
+const [existItemShow, setExistItemShow] = useState(false);
   const clickHandler = () => {
     setShowIndex();
+    setExistItemShow(!existItemShow)
   };
 
   console.log(showItems);
@@ -20,7 +23,7 @@ const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
             🔽
           </span>
         </div>
-        {showItems && <ItemList items={data.itemCards}></ItemList>}
+        {existItemShow && showItems && <ItemList items={data.itemCards}></ItemList>}
       </div>
       {/* Accordian body*/}
     </div>
