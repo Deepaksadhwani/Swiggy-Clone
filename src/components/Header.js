@@ -1,11 +1,14 @@
 import { LOGO_URL } from "../utils/constants";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
   const [login, setLogin] = useState("login");
   const onlineStatus = useOnlineStatus();
+
+  const { loggedInUser } = useContext(UserContext);
   return (
     <div className="">
       <div className="bg-gradient-to-r border-b-2 border-gray-500  from-green-600 to-teal-700 shadow-lg flex sm:justify-between items-center sm:flex-row flex-col">
@@ -38,6 +41,7 @@ const Header = () => {
             >
               {login}
             </button>
+            <li>{loggedInUser}</li>
           </ul>
         </div>
       </div>

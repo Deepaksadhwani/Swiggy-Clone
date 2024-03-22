@@ -1,9 +1,10 @@
 import RestaurantCard, { withIsOpenLabel } from "./RestaurantCard";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import useBodyCards from "../utils/useBodyCards";
+import UserContext from "../utils/UserContext";
 const Body = () => {
   const [searchText, setSearchText] = useState("");
   const { resList, filterRes, setFilterRes } = useBodyCards();
@@ -16,12 +17,21 @@ const Body = () => {
       <h1>Looks like you're offline!! Please check your internet connection</h1>
     );
 
+  const { setUserName, loggedInUser } = useContext(UserContext);
+
   // Conditional Rendering - rendering bases on condition is called conditional rendering
   return !resList || resList.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="">
-      <div className="flex flex-col sm:flex-row space-x-3 items-center bg-yellow-500 border-upper border-black  justify-center  ">
+      <div className="flex flex-col relative sm:flex-row space-x-3 items-center bg-yellow-500 border-upper border-black  justify-center  ">
+        <label className="absolute left-0">UserName:</label>
+        <input
+          className="absolute left-20 border-2 border-black shadow-md shadow-gray-500"
+          type="text"
+          value={loggedInUser}
+          onChange={(e) => setUserName(e.target.value)}
+        />
         <div className="">
           <input
             type="text"
