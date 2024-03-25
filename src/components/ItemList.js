@@ -1,5 +1,12 @@
+import { useDispatch } from "react-redux";
 import { CDN_URL } from "../utils/constants";
+import { addItem } from "../utils/cartSlice";
 const ItemList = ({ items }) => {
+  const disptach = useDispatch();
+
+  const addItemHanlder = (item) => {
+    disptach(addItem(item));
+  };
 
   return (
     <div>
@@ -24,7 +31,10 @@ const ItemList = ({ items }) => {
               alt=""
               className="w-full "
             />
-            <button className="p-2  bg-green-700 text-white  border-2 shadow-lg bottom-3  font-bold left-4 rounded-full  border-white hover:text-green-700 transition-all duration-200 hover:bg-white hover:border-green-700 absolute mx-auto cursor-pointer">
+            <button
+              className="p-2  bg-green-700 text-white  border-2 shadow-lg bottom-3  font-bold left-4 rounded-full border-white hover:text-green-700 transition-all duration-200 hover:bg-white hover:border-green-700 absolute mx-auto cursor-pointer"
+              onClick={() => addItemHanlder(item)}
+            >
               Add +
             </button>
           </div>

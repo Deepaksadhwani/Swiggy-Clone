@@ -1,13 +1,13 @@
 import { useState } from "react";
 import ItemList from "./ItemList";
 const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
-const [existItemShow, setExistItemShow] = useState(false);
+  const [existItemShow, setExistItemShow] = useState(false);
   const clickHandler = () => {
     setShowIndex();
-    setExistItemShow(!existItemShow)
+    setExistItemShow(!existItemShow);
   };
 
-  console.log(showItems);
+ 
   return (
     <div className="">
       {/*Header*/}
@@ -23,7 +23,9 @@ const [existItemShow, setExistItemShow] = useState(false);
             🔽
           </span>
         </div>
-        {existItemShow && showItems && <ItemList items={data.itemCards}></ItemList>}
+        {existItemShow && showItems && (
+          <ItemList items={data.itemCards}></ItemList>
+        )}
       </div>
       {/* Accordian body*/}
     </div>
