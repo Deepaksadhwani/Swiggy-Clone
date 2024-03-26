@@ -67,7 +67,8 @@ const Body = () => {
           Top Rated Restaurant
         </button>
       </div>
-
+          
+      {console.log(filterRes)}    
       <div className="flex flex-wrap justify-center items-center bg-yellow-500">
         {filterRes.map((restaurant) =>
           restaurant.info ? (

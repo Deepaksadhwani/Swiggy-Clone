@@ -16,12 +16,12 @@ const Applayout = () => {
   const [userName, setUserName] = useState("");
   return (
     <Provider store={appStore}>
-    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
-      <div className="">
-        <Header />
-        <Outlet />
-      </div>
-    </UserContext.Provider>
+      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+        <div className="">
+          <Header />
+          <Outlet />
+        </div>
+      </UserContext.Provider>
     </Provider>
   );
 };
@@ -46,7 +46,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <Cart/>,
+        element: <Cart />,
       },
       {
         path: "/restaurants/:resId",

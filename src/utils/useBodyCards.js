@@ -17,6 +17,7 @@ const useBodyCards = () => {
       console.log(
         json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
       );
+      console.log(json);
       setResList(
         json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants
