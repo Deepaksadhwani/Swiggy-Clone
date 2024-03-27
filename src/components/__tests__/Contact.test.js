@@ -32,7 +32,7 @@ describe("Contact us Page Test Case", ()=> {
           //querying
           //whenever multiple elemet use getAll
         const inputBox = screen.getAllByRole("textbox");
-        console.log(inputBox);
+  
       //   expect(inputBox.length).not.toBe(2);
           expect(inputBox.length).toBe(3);
       });

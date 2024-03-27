@@ -35,6 +35,7 @@ const Body = () => {
         <div className="">
           <input
             type="text"
+            data-testid="searchInput"
             className="border-2 shadow-md shadow-gray-500  border-black"
             value={searchText}
             onChange={(e) => {
@@ -67,8 +68,8 @@ const Body = () => {
           Top Rated Restaurant
         </button>
       </div>
-          
-      {console.log(filterRes)}    
+
+      {console.log(filterRes)}
       <div className="flex flex-wrap justify-center items-center bg-yellow-500">
         {filterRes.map((restaurant) =>
           restaurant.info ? (
